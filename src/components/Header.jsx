@@ -1,10 +1,15 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-const pages = ["Home", "Sell Digital Asset", "My Digital Asset"];
+import { Link } from "react-router-dom";
+
+const pages = [
+  { title: "Home", href: "/" },
+  { title: "Create Digital Asset", href: "/create" },
+  { title: "My Digital Asset", href: "/my-assets" },
+];
 
 const Header = () => {
   return (
@@ -19,12 +24,14 @@ const Header = () => {
               justifyContent: "center",
             }}
           >
-            {pages.map((page) => (
+            {pages.map((page, idx) => (
               <Button
-                key={page}
+                key={idx}
                 sx={{ my: 2, mx: 1, color: "white", display: "block" }}
+                component={Link}
+                to={page.href}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
